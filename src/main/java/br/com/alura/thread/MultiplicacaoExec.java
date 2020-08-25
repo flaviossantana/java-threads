@@ -3,13 +3,13 @@ package br.com.alura.thread;
 import javax.swing.*;
 import java.math.BigInteger;
 
-public class CauculoThread implements Runnable {
+public class MultiplicacaoExec implements Runnable {
 
     private JTextField primeiro;
     private JTextField segundo;
     private JLabel resultado;
 
-    public CauculoThread(JTextField primeiro, JTextField segundo, JLabel resultado) {
+    public MultiplicacaoExec(JTextField primeiro, JTextField segundo, JLabel resultado) {
         this.primeiro = primeiro;
         this.segundo = segundo;
         this.resultado = resultado;

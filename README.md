@@ -8,6 +8,11 @@ Projeto Java utilizando thread para programação paralalela.
 > Java Virtual Machine e aplicativos Java em uma máquina local ou remota.
 > [mais...](https://docs.oracle.com/javase/7/docs/technotes/guides/management/jconsole.html)
 
+Execute no prompt do windows:
+```sh
+$ jconsole
+```
+![alt text](https://docs.oracle.com/javase/7/docs/technotes/guides/management/figures/memtab.gif)
 
 ### Thread
 

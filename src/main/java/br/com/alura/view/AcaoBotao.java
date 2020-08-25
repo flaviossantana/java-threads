@@ -1,6 +1,6 @@
 package br.com.alura.view;
 
-import br.com.alura.thread.CauculoThread;
+import br.com.alura.thread.MultiplicacaoExec;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -20,8 +20,8 @@ public class AcaoBotao implements ActionListener {
 
 
     public void actionPerformed(ActionEvent e) {
-        Runnable cauculoThread = new CauculoThread(primeiro, segundo, resultado);
-        Thread thread = new Thread(cauculoThread, CauculoThread.class.getSimpleName());
+        Runnable cauculoThread = new MultiplicacaoExec(primeiro, segundo, resultado);
+        Thread thread = new Thread(cauculoThread, MultiplicacaoExec.class.getSimpleName());
         thread.start();
         resultado.setText("Aguarde!");
         System.out.println("thread.start()");
