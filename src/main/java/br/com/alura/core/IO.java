@@ -1,4 +1,4 @@
-package br.com.alura;
+package br.com.alura.core;
 
 public class IO {
 
