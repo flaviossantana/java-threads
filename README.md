@@ -35,6 +35,8 @@ $ jconsole
   - uma thread esperando pode ser notificada pelo método object.notifyAll()
   - existem daemon threads para executar tarefas ou serviços secundários
   - daemons serão automaticamente desligados quando todas as outras threads terminarem
+  - wait() e notify() sempre devem ser chamados dentro de um bloco synchronized;
+  - Temos que ter cuidado para não mandar um thread esperar quando não há necessidade;
 
 ### Dependências
 
