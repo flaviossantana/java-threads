@@ -11,6 +11,14 @@ public class LimpezaTask implements Runnable {
     }
 
     public void run() {
-        banheiroService.limpar();
+        while (true){
+            banheiroService.limpar();
+            try {
+                Thread.sleep(5000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
     }
 }

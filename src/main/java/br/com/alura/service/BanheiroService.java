@@ -2,7 +2,7 @@ package br.com.alura.service;
 
 public class BanheiroService {
 
-    private Boolean isSujo = true;
+    private Boolean isSujo = false;
     private int usado = 0;
 
     public BanheiroService() {
@@ -18,14 +18,14 @@ public class BanheiroService {
         synchronized (this){
             System.out.println(nome + " entrando no banheiro");
 
-            if(isSujo){
+            while(isSujo){
                 esperarLimpeza(nome);
             }
 
             System.out.println(nome + " fazendo coisa liquida");
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(200);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -34,9 +34,7 @@ public class BanheiroService {
             System.out.println(nome + " lavando a mão");
             System.out.println(nome + " saindo do banheiro");
 
-            if(isPrecisafazerLimpeza()){
-                System.out.println(nome + " Cadê a tia da limpeza");
-            }
+            verificarLimpeza(nome);
 
         }
 
@@ -52,14 +50,14 @@ public class BanheiroService {
         synchronized (this){
             System.out.println(nome + " entrando no banheiro");
 
-            if(isSujo){
+            while(isSujo){
                 esperarLimpeza(nome);
             }
 
             System.out.println(nome + " fazendo coisa sólida");
 
             try {
-                Thread.sleep(2000);
+                Thread.sleep(400);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -68,13 +66,21 @@ public class BanheiroService {
             System.out.println(nome + " lavando a mão");
             System.out.println(nome + " saindo do banheiro");
 
-            if(isPrecisafazerLimpeza()){
-                System.out.println(nome + " Cadê a tia da limpeza");
-            }
+            verificarLimpeza(nome);
 
         }
 
 
+    }
+
+    private synchronized void verificarLimpeza(String nome) {
+        if (isPrecisafazerLimpeza(nome)) {
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void limpar() {
@@ -95,25 +101,22 @@ public class BanheiroService {
             this.isSujo = false;
 
             try {
-                Thread.sleep(5000);
+                Thread.sleep(800);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
 
             this.usado = 0;
-            this.notifyAll();
-
             System.out.println(nome + " saindo do banheiro");
+            this.notifyAll();
         }
 
 
     }
 
-    private synchronized boolean isPrecisafazerLimpeza() {
+    private synchronized boolean isPrecisafazerLimpeza(String nome) {
         this.usado++;
-
-        System.out.println("O banheiro foi usado " + this.usado +"X");
-
+        System.out.println(nome + " foi o " + this.usado +"º a usar.");
         if(this.usado > 1){
             this.isSujo = true;
         }
@@ -122,7 +125,7 @@ public class BanheiroService {
     }
 
 
-    private void esperarLimpeza(String nome) {
+    private synchronized void esperarLimpeza(String nome) {
         System.out.println(nome + " eca, o banheiro está sujo!");
         try {
             this.wait();
