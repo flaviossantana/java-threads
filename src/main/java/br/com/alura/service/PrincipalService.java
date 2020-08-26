@@ -1,8 +1,8 @@
-package br.com.alura.thread;
+package br.com.alura.service;
 
 import java.util.concurrent.TimeUnit;
 
-public class Principal {
+public class PrincipalService {
 
     public static void main(String[] args) throws InterruptedException {
 
