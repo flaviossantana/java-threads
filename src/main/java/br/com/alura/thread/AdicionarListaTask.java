@@ -11,8 +11,22 @@ public class AdicionarListaTask implements Runnable {
     }
 
     public void run() {
-        for (int i = 0; i < 100; i++){
-            lista.add(Thread.currentThread().getName() +"/"+ i);
+
+        try {
+            synchronized (lista) {
+                Thread.sleep(1000);
+                for (int i = 0; i < 100; i++) {
+                    System.out.println("#ADICIONANDO: " + Thread.currentThread().getName() + "/" + i);
+                    lista.add(Thread.currentThread().getName() + "/" + i);
+                }
+
+                if (lista.size() == 1000) {
+                    lista.notify();
+                }
+            }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
     }
 }

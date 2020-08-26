@@ -13,7 +13,7 @@ public class FestaMain {
         Faker faker = new Faker();
         BanheiroService banheiroService = new BanheiroService();
 
-        for (int i = 0; i <= 2; i++) {
+        for (int i = 0; i <= 10; i++) {
             String nome = faker.name().fullName();
             Runnable task = faker.bool().bool() ?
                     new LiquidoTask(banheiroService) :
@@ -21,12 +21,13 @@ public class FestaMain {
             new Thread(task, nome).start();
         }
 
-        Thread limpesa = new Thread(
+        Thread limpeza = new Thread(
                 new LimpezaTask(banheiroService),
                 ">>> LIMPEZA - " +
                         faker.zelda().character().toUpperCase());
-        limpesa.setDaemon(true);
-        limpesa.start();
+        limpeza.setDaemon(true);
+        limpeza.setPriority(Thread.MAX_PRIORITY);
+        limpeza.start();
 
     }
 

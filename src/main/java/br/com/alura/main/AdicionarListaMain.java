@@ -1,5 +1,6 @@
 package br.com.alura.main;
 
+import br.com.alura.service.ImprimirListaService;
 import br.com.alura.thread.AdicionarListaTask;
 
 import java.util.ArrayList;
@@ -16,12 +17,6 @@ public class AdicionarListaMain {
                     .start();
         }
 
-        Thread.sleep(12000);
-        System.out.println("####### PROCESSANDO RESULTADO #######");
-
-        for (int i = 0; i < lista.size(); i++){
-            System.out.println(i + " - " + lista.get(i));
-        }
-
+        new Thread(new ImprimirListaService(lista)).start();
     }
 }

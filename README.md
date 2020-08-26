@@ -30,6 +30,11 @@ $ jconsole
   - Ao modificar o objeto concorrentemente, coisas inesperadas podem aparecer;
   - Thread safe significa que o código funciona corretamente mesmo com vários threads compartilhando o objeto;
   - Há coleções thread safe, como o java.util.Vector para lista ou java.util.Hashtable para mapas
+  - ao chamar object.wait() a thread fica no estado de espera
+  - estado de espera significa WAITING no mundo de threads
+  - uma thread esperando pode ser notificada pelo método object.notifyAll()
+  - existem daemon threads para executar tarefas ou serviços secundários
+  - daemons serão automaticamente desligados quando todas as outras threads terminarem
 
 ### Dependências
 
