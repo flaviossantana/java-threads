@@ -49,8 +49,7 @@ Java Faker
 
 Esta biblioteca gera daddos falsos.
 É útil quando você está desenvolvendo um novo projeto e precisa de alguns dados bonitos para mostrar.
-
-Dependências 
+ 
 -----
 Em pom.xml, adicione a seguinte estrofe xml entre <dependencies> ... </dependencies>
 
