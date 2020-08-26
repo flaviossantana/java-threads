@@ -17,7 +17,7 @@ public class Banheiro {
             System.out.println(nome + " fazendo coisa liquida");
 
             try {
-                Thread.sleep(8000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -41,7 +41,7 @@ public class Banheiro {
             System.out.println(nome + " fazendo coisa sólida");
 
             try {
-                Thread.sleep(15000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

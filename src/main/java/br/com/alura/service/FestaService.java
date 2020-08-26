@@ -11,9 +11,8 @@ public class FestaService {
         Faker faker = new Faker();
         Banheiro banheiro = new Banheiro();
 
-        for (int i = 0; i <= 4; i++) {
+        for (int i = 0; i <= 1000; i++) {
             String nome = faker.name().fullName();
-
             Runnable task = faker.bool().bool() ?
                     new LiquidoTask(banheiro) :
                     new SolidoTask(banheiro);
