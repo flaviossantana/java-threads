@@ -27,6 +27,9 @@ $ jconsole
   - Para sincronizar threads, devemos utilizar um bloco synchronized;
   - O synchronized significa que bloqueamos o objeto para outros threads;
   - A sincronização é feita através de mutex, que nada mais é do que a chave do objeto.
+  - Ao modificar o objeto concorrentemente, coisas inesperadas podem aparecer;
+  - Thread safe significa que o código funciona corretamente mesmo com vários threads compartilhando o objeto;
+  - Há coleções thread safe, como o java.util.Vector para lista ou java.util.Hashtable para mapas
 
 ### Dependências
 
