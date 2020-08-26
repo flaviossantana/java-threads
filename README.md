@@ -21,3 +21,6 @@ $ jconsole
   - O construtor da classe Thread recebe esse Runnable;
   - Devemos inicializar uma Thread explicitamente através do método start();
   - Através do Thread.sleep(millis) podemos mandar uma thread dormir.
+  - Java suporta Threads nativamente
+  - Java mapeia os Threads para o Sistema Operacional
+  - A ordem de execução depende da JVM e não do nosso código

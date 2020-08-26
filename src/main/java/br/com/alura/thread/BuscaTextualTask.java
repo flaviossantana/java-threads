@@ -4,28 +4,32 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-public class BuscaTextualThread implements Runnable {
+public class BuscaTextualTask implements Runnable {
 
     private String word;
     private String fileName;
 
-    public BuscaTextualThread(String word, String fileName) {
-        this.word = word;
+    public BuscaTextualTask(String word, String fileName) {
+        this.word = word.toLowerCase();
         this.fileName = fileName;
     }
 
     public void run() {
 
         try {
+
             Integer count = 1;
             Scanner scanner = new Scanner(new File(fileName));
-            while (scanner.hasNext()){
-                String linha = scanner.nextLine();
-                if(linha.toLowerCase().contains(word.toLowerCase())){
+            while (scanner.hasNextLine()){
+                String linha = scanner.nextLine().toLowerCase();
+                if(linha.contains(word)){
                     System.out.println(
-                            fileName.toUpperCase() + "> LINHA: "+
-                                    count
-                                    +"|"+ linha
+                            Thread.currentThread().getName().toUpperCase() +
+                                    "-" +
+                                    "> LINHA: "+
+                                    count +
+                                    "|"+
+                                    linha
                     );
                 }
                 count++;

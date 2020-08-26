@@ -3,13 +3,13 @@ package br.com.alura.thread;
 import javax.swing.*;
 import java.math.BigInteger;
 
-public class MultiplicacaoExec implements Runnable {
+public class MultiplicacaoTask implements Runnable {
 
     private JTextField primeiro;
     private JTextField segundo;
     private JLabel resultado;
 
-    public MultiplicacaoExec(JTextField primeiro, JTextField segundo, JLabel resultado) {
+    public MultiplicacaoTask(JTextField primeiro, JTextField segundo, JLabel resultado) {
         this.primeiro = primeiro;
         this.segundo = segundo;
         this.resultado = resultado;
