@@ -6,7 +6,9 @@ public class Banheiro {
         super();
     }
 
-    public void urinar(String nome) {
+    public void pipi() {
+
+        String nome = Thread.currentThread().getName();
 
         System.out.println(nome + " pergunta... Tem gente?");
 
@@ -28,7 +30,9 @@ public class Banheiro {
 
     }
 
-    public void defecar(String nome) {
+    public void popo() {
+
+        String nome = Thread.currentThread().getName();
 
         System.out.println(nome + " pergunta... Tem gente?");
 

@@ -4,16 +4,13 @@ import br.com.alura.service.Banheiro;
 
 public class SolidoTask implements Runnable {
 
-
-    private String nome;
     private Banheiro banheiro;
 
-    public SolidoTask(String nome, Banheiro banheiro) {
-        this.nome = nome;
+    public SolidoTask(Banheiro banheiro) {
         this.banheiro = banheiro;
     }
 
     public void run() {
-        banheiro.defecar(nome);
+        banheiro.popo();
     }
 }

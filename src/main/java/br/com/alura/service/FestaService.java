@@ -12,13 +12,13 @@ public class FestaService {
         Banheiro banheiro = new Banheiro();
 
         for (int i = 0; i <= 4; i++) {
-            String name = faker.name().fullName();
+            String nome = faker.name().fullName();
 
             Runnable task = faker.bool().bool() ?
-                    new LiquidoTask(name, banheiro) :
-                    new SolidoTask(name, banheiro);
+                    new LiquidoTask(banheiro) :
+                    new SolidoTask(banheiro);
 
-            new Thread(task).start();
+            new Thread(task, nome).start();
         }
 
 
