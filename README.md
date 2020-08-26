@@ -37,6 +37,10 @@ $ jconsole
   - daemons serão automaticamente desligados quando todas as outras threads terminarem
   - wait() e notify() sempre devem ser chamados dentro de um bloco synchronized;
   - Temos que ter cuidado para não mandar um thread esperar quando não há necessidade;
+  - Podemos usar um bloco synchronized dentro do outro.
+  - Ao obter os recursos, pode acontecer um impasse (interbloqueio).
+  - O impasse também é chamado deadlock.
+  - Podemos evitar o impasse obtendo as chaves dos objetos na mesma ordem, em todos os threads.
 
 ### Dependências
 
