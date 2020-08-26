@@ -1,8 +1,8 @@
 package br.com.alura.service;
 
-public class Banheiro {
+public class BanheiroService {
 
-    public Banheiro() {
+    public BanheiroService() {
         super();
     }
 

@@ -1,5 +1,6 @@
-package br.com.alura.service;
+package br.com.alura.main;
 
+import br.com.alura.service.BanheiroService;
 import br.com.alura.thread.SolidoTask;
 import br.com.alura.thread.LiquidoTask;
 import com.github.javafaker.Faker;
@@ -9,13 +10,13 @@ public class FestaService {
     public static void main(String[] args) {
 
         Faker faker = new Faker();
-        Banheiro banheiro = new Banheiro();
+        BanheiroService banheiroService = new BanheiroService();
 
         for (int i = 0; i <= 1000; i++) {
             String nome = faker.name().fullName();
             Runnable task = faker.bool().bool() ?
-                    new LiquidoTask(banheiro) :
-                    new SolidoTask(banheiro);
+                    new LiquidoTask(banheiroService) :
+                    new SolidoTask(banheiroService);
 
             new Thread(task, nome).start();
         }

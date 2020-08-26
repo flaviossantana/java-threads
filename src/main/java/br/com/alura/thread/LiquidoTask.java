@@ -1,16 +1,16 @@
 package br.com.alura.thread;
 
-import br.com.alura.service.Banheiro;
+import br.com.alura.service.BanheiroService;
 
 public class LiquidoTask implements Runnable {
 
-    private Banheiro banheiro;
+    private BanheiroService banheiroService;
 
-    public LiquidoTask(Banheiro banheiro) {
-        this.banheiro = banheiro;
+    public LiquidoTask(BanheiroService banheiroService) {
+        this.banheiroService = banheiroService;
     }
 
     public void run() {
-        banheiro.pipi();
+        banheiroService.pipi();
     }
 }

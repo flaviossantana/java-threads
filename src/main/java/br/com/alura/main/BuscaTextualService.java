@@ -1,4 +1,4 @@
-package br.com.alura.service;
+package br.com.alura.main;
 
 import br.com.alura.core.IO;
 import br.com.alura.thread.BuscaTextualTask;

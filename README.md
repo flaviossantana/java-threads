@@ -21,9 +21,17 @@ $ jconsole
   - O construtor da classe Thread recebe esse Runnable;
   - Devemos inicializar uma Thread explicitamente através do método start();
   - Através do Thread.sleep(millis) podemos mandar uma thread dormir.
+  - Synchronized deve ser colocado em um método para que não possa ser executado por duas Threads ao mesmo tempo.
+  - Um Thread pode ter um nome;
+  - Podemos pegar o Thread atual através do método Thread.currentThread();
+  - Para sincronizar threads, devemos utilizar um bloco synchronized;
+  - O synchronized significa que bloqueamos o objeto para outros threads;
+  - A sincronização é feita através de mutex, que nada mais é do que a chave do objeto.
+
+### Dependências
 
 Java Faker
-==========
+-----
 
 Esta biblioteca gera daddos falsos.
 É útil quando você está desenvolvendo um novo projeto e precisa de alguns dados bonitos para mostrar.

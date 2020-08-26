@@ -1,16 +1,16 @@
 package br.com.alura.thread;
 
-import br.com.alura.service.Banheiro;
+import br.com.alura.service.BanheiroService;
 
 public class SolidoTask implements Runnable {
 
-    private Banheiro banheiro;
+    private BanheiroService banheiroService;
 
-    public SolidoTask(Banheiro banheiro) {
-        this.banheiro = banheiro;
+    public SolidoTask(BanheiroService banheiroService) {
+        this.banheiroService = banheiroService;
     }
 
     public void run() {
-        banheiro.popo();
+        banheiroService.popo();
     }
 }

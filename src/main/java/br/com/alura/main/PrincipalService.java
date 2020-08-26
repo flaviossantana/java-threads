@@ -1,4 +1,4 @@
-package br.com.alura.service;
+package br.com.alura.main;
 
 import java.util.concurrent.TimeUnit;
 
