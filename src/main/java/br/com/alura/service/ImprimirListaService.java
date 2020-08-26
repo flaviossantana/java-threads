@@ -5,15 +5,22 @@ import java.util.List;
 public class ImprimirListaService implements Runnable {
 
     private List<String> lista;
+    private int totalItens;
 
-    public ImprimirListaService(List<String> lista) {
+    public ImprimirListaService(int totalItens, List<String> lista) {
+        this.totalItens = totalItens;
         this.lista = lista;
     }
 
     public void run() {
         try {
+
             synchronized (lista) {
-                lista.wait();
+
+                if(lista.size() != totalItens){
+                    System.out.println("#Lista não está cheia");
+                    lista.wait();
+                }
 
                 System.out.println("############### INICIANDO IMPRESSÃO ###############");
 
@@ -21,6 +28,7 @@ public class ImprimirListaService implements Runnable {
                     System.out.println("#IMPRIMINDO: " + i + " - " + lista.get(i));
                 }
             }
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

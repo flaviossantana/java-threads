@@ -11,12 +11,14 @@ public class AdicionarListaMain {
     public static void main(String[] args) throws InterruptedException {
 
         List<String> lista = new Vector<String>();
+        int totalThread = 10;
+        int totalItens = 100;
 
-        for (int i = 0; i < 10; i++){
-            new Thread(new AdicionarListaTask(lista), "THREAD 0" + i)
+        for (int i = 0; i < totalThread; i++){
+            new Thread(new AdicionarListaTask(totalThread, totalItens, lista), "THREAD 0" + i)
                     .start();
         }
 
-        new Thread(new ImprimirListaService(lista)).start();
+        new Thread(new ImprimirListaService((totalThread*totalItens), lista)).start();
     }
 }
