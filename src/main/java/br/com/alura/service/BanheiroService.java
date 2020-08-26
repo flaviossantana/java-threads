@@ -1,122 +1,87 @@
 package br.com.alura.service;
 
+import br.com.alura.core.MsgUtil;
+
+import static br.com.alura.constant.Msg.*;
+
 public class BanheiroService {
 
-    private Boolean isSujo = false;
     private int usado = 0;
+    private Boolean isSujo = false;
 
     public BanheiroService() {
         super();
     }
 
-    public void pipi() {
+    public void limpar() {
 
         String nome = Thread.currentThread().getName();
-
-        System.out.println(nome + " pergunta... Tem gente?");
+        MsgUtil.print(nome + TEM_GENTE);
 
         synchronized (this){
-            System.out.println(nome + " entrando no banheiro");
+            MsgUtil.print(nome + ENTRANDO_NO_BANEHIRO);
 
-            while(isSujo){
-                esperarLimpeza(nome);
+            if(!isSujo){
+                MsgUtil.print(nome + " banheiro ainda está limpo.");
+                return;
             }
 
-            System.out.println(nome + " fazendo coisa liquida");
+            MsgUtil.print(nome + " fazendo limpeza");
+            this.isSujo = false;
 
-            try {
-                Thread.sleep(200);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            sleep(800);
 
-            System.out.println(nome + " dando descarga");
-            System.out.println(nome + " lavando a mão");
-            System.out.println(nome + " saindo do banheiro");
-
-            verificarLimpeza(nome);
-
+            this.usado = 0;
+            MsgUtil.print(nome + SAINDO_DO_BANHEIRO);
+            this.notifyAll();
         }
+    }
 
-
+    public void pipi() {
+        realizaInstucoes(FAZENDO_COISA_LIQUISA, 200);
     }
 
     public void popo() {
+        realizaInstucoes(FAZENDO_COISA_SOLIDA, 400);
+    }
 
+    private void realizaInstucoes(String msgExecucao, int tempoExecucao) {
         String nome = Thread.currentThread().getName();
+        MsgUtil.print(nome + TEM_GENTE);
 
-        System.out.println(nome + " pergunta... Tem gente?");
+        synchronized (this) {
+            MsgUtil.print(nome + ENTRANDO_NO_BANEHIRO);
 
-        synchronized (this){
-            System.out.println(nome + " entrando no banheiro");
+            enquantoEsperaLimpeza(nome);
 
-            while(isSujo){
-                esperarLimpeza(nome);
-            }
+            MsgUtil.print(nome + msgExecucao);
 
-            System.out.println(nome + " fazendo coisa sólida");
+            sleep(tempoExecucao);
 
-            try {
-                Thread.sleep(400);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            System.out.println(nome + " dando descarga");
-            System.out.println(nome + " lavando a mão");
-            System.out.println(nome + " saindo do banheiro");
+            MsgUtil.print(nome + DANDO_DESCARGA);
+            MsgUtil.print(nome + LAVANDO_A_MAO);
+            MsgUtil.print(nome + SAINDO_DO_BANHEIRO);
 
             verificarLimpeza(nome);
-
         }
+    }
 
-
+    private synchronized void enquantoEsperaLimpeza(String nome) {
+        while (isSujo) {
+            esperarLimpeza(nome);
+        }
     }
 
     private synchronized void verificarLimpeza(String nome) {
         if (isPrecisafazerLimpeza(nome)) {
-            try {
-                this.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            esperar();
         }
-    }
-
-    public void limpar() {
-
-        String nome = Thread.currentThread().getName();
-
-        System.out.println(nome + " pergunta... Tem gente?");
-
-        synchronized (this){
-            System.out.println(nome + " entrando no banheiro");
-
-            if(!isSujo){
-                System.out.println(nome + " banheiro ainda está limpo.");
-                return;
-            }
-
-            System.out.println(nome + " fazendo limpeza");
-            this.isSujo = false;
-
-            try {
-                Thread.sleep(800);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-
-            this.usado = 0;
-            System.out.println(nome + " saindo do banheiro");
-            this.notifyAll();
-        }
-
-
     }
 
     private synchronized boolean isPrecisafazerLimpeza(String nome) {
         this.usado++;
-        System.out.println(nome + " foi o " + this.usado +"º a usar.");
+        MsgUtil.print(nome + " foi o " + this.usado +"º a usar.");
+
         if(this.usado > 1){
             this.isSujo = true;
         }
@@ -124,13 +89,24 @@ public class BanheiroService {
         return this.isSujo;
     }
 
-
     private synchronized void esperarLimpeza(String nome) {
-        System.out.println(nome + " eca, o banheiro está sujo!");
+        MsgUtil.print(nome + " eca, o banheiro está sujo!");
+        esperar();
+    }
+
+    private synchronized void esperar() {
         try {
             this.wait();
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+        }
+    }
+
+    private void sleep(int millis) {
+        try {
+            Thread.sleep(millis);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
