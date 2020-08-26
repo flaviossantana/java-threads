@@ -1,18 +1,18 @@
 package br.com.alura.thread;
 
-import br.com.alura.core.ListaUtil;
+import java.util.List;
 
-public class AdicionarlistaTask implements Runnable {
+public class AdicionarListaTask implements Runnable {
 
-    private ListaUtil lista;
+    private List<String> lista;
 
-    public AdicionarlistaTask(ListaUtil lista) {
+    public AdicionarListaTask(List<String> lista) {
         this.lista = lista;
     }
 
     public void run() {
         for (int i = 0; i < 100; i++){
-            lista.adicionar(Thread.currentThread().getName() +"/"+ i);
+            lista.add(Thread.currentThread().getName() +"/"+ i);
         }
     }
 }

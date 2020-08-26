@@ -1,6 +1,6 @@
 package br.com.alura.core;
 
-public class ListaUtil {
+public class ArrayUtil {
 
     private String[] elementos = new String[10000];
     private Integer indice = 0;
